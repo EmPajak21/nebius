@@ -36,7 +36,9 @@ def fetch_repo_tree(url: str):
     response = requests.get(api_url, headers=_github_headers())
 
     if response.status_code == 404:
-        raise FileNotFoundError(f"Repository '{owner}/{repo}' not found — check the URL or ensure the repo is public")
+        raise FileNotFoundError(
+            f"Repository '{owner}/{repo}' not found — check the URL or ensure the repo is public"
+        )
 
     if response.status_code == 403:
         raise PermissionError(f"Access denied for '{owner}/{repo}' — the repository may be private")

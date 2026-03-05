@@ -3,23 +3,75 @@ MAX_CHARS_PER_FILE = 3000
 MAX_TOTAL_CHARS = 40000
 
 BINARY_EXTENSIONS = (
-    ".png", ".jpg", ".jpeg", ".gif", ".bmp", ".ico", ".svg", ".webp",
-    ".pdf", ".zip", ".tar", ".gz", ".bz2", ".xz", ".7z", ".rar",
-    ".exe", ".dll", ".so", ".dylib", ".whl", ".pyc", ".pyo",
-    ".woff", ".woff2", ".ttf", ".eot", ".otf",
-    ".mp3", ".mp4", ".wav", ".ogg", ".avi", ".mov",
-    ".db", ".sqlite", ".sqlite3",
-    ".bin", ".dat", ".pkl", ".npy", ".npz",
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".gif",
+    ".bmp",
+    ".ico",
+    ".svg",
+    ".webp",
+    ".pdf",
+    ".zip",
+    ".tar",
+    ".gz",
+    ".bz2",
+    ".xz",
+    ".7z",
+    ".rar",
+    ".exe",
+    ".dll",
+    ".so",
+    ".dylib",
+    ".whl",
+    ".pyc",
+    ".pyo",
+    ".woff",
+    ".woff2",
+    ".ttf",
+    ".eot",
+    ".otf",
+    ".mp3",
+    ".mp4",
+    ".wav",
+    ".ogg",
+    ".avi",
+    ".mov",
+    ".db",
+    ".sqlite",
+    ".sqlite3",
+    ".bin",
+    ".dat",
+    ".pkl",
+    ".npy",
+    ".npz",
 )
 
-SKIP_DIRS = ("node_modules/", "vendor/", ".venv/", "venv/", "__pycache__/", "dist/", "build/", ".git/")
+SKIP_DIRS = (
+    "node_modules/",
+    "vendor/",
+    ".venv/",
+    "venv/",
+    "__pycache__/",
+    "dist/",
+    "build/",
+    ".git/",
+)
 
 LOCK_FILES = (".lock", "-lock.json", ".sum")
 
 DEP_FILES = (
-    "requirements.txt", "pyproject.toml", "setup.py", "setup.cfg",
-    "package.json", "cargo.toml", "go.mod", "gemfile", "pom.xml",
-    "build.gradle", "composer.json",
+    "requirements.txt",
+    "pyproject.toml",
+    "setup.py",
+    "setup.cfg",
+    "package.json",
+    "cargo.toml",
+    "go.mod",
+    "gemfile",
+    "pom.xml",
+    "build.gradle",
+    "composer.json",
 )
 
 
@@ -99,7 +151,8 @@ def truncate_content(content: str, limit: int = MAX_CHARS_PER_FILE) -> str:
 def build_repo_tree(tree_items, max_paths: int = 200) -> str:
     """Build a full directory listing from the repo tree for structural context."""
     paths = sorted(
-        item["path"] for item in tree_items
+        item["path"]
+        for item in tree_items
         if item["type"] == "blob" and not is_skipped(item["path"])
     )
     if len(paths) > max_paths:

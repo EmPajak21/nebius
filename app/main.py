@@ -2,7 +2,13 @@ from fastapi import FastAPI, HTTPException
 
 from app.models import RepoRequest, RepoResponse
 from app.github_utils import fetch_repo_tree, fetch_file_content
-from app.repo_processor import select_files, truncate_content, build_repo_tree, MAX_CHARS_PER_FILE, MAX_TOTAL_CHARS
+from app.repo_processor import (
+    select_files,
+    truncate_content,
+    build_repo_tree,
+    MAX_CHARS_PER_FILE,
+    MAX_TOTAL_CHARS,
+)
 from app.summarizer import summarize_repo
 
 
@@ -26,7 +32,13 @@ async def summarize_repo_endpoint(request: RepoRequest):
         selected_files = select_files(tree)
 
         if not selected_files:
-            raise HTTPException(status_code=422, detail={"status": "error", "message": "Repository appears to be empty or contains no readable files"})
+            raise HTTPException(
+                status_code=422,
+                detail={
+                    "status": "error",
+                    "message": "Repository appears to be empty or contains no readable files",
+                },
+            )
 
         repo_tree = build_repo_tree(tree)
 
