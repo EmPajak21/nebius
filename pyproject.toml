@@ -1,0 +1,30 @@
+[project]
+name = "repo-summarizer"
+version = "0.1.0"
+description = "API service that summarizes GitHub repositories using an LLM"
+requires-python = ">=3.10"
+
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "requests",
+    "pydantic",
+    "openai",
+    "python-dotenv"
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "pytest"
+]
+
+[tool.uv]
+dev-dependencies = [
+    "ruff",
+    "pytest"
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"    
